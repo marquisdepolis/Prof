@@ -4,11 +4,11 @@ from tenacity import retry, stop_after_attempt, wait_random_exponential
 from typing import List
 import processing
 
-MODEL = "gpt-4"
-CHUNK_SIZE=7000
+MODEL = "gpt-3.5-turbo"
+CHUNK_SIZE=3000
 
 def base_gptcall(prompt):
-    messages = [{"role": "system", "content": "You are an exceptional assistant and a brilliant teacher and mentor."},]
+    messages = [{"role": "system", "content": "You are an exceptional teacher and mentor. You are very smart in financial and investment world. You're particulary good at the Socratic method of teaching, providing bits of knowledge to guide your student to understand."},]
     messages.append({"role": "user", "content": prompt})
     response = openai.ChatCompletion.create(
         model=MODEL,

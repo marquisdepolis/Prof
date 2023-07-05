@@ -24,11 +24,12 @@ class Game:
     def generate_game_state(self):
         income, balance, cashflow = get_financials_for_period(*self.financial_data, self.company, *self.date)
         game_prompt = f"Can you provide a simulated financial and operational overview for {self.company} in {self.date} from the following information and anything else you might know about the company at that time? The company financial statements are: \n{income}\n, {balance}\n, {cashflow}\n"
+        print(f"The company financial statements are: \n{income}\n, {balance}\n, {cashflow}")
         game_state = gptcalls.call_gpt(game_prompt)
         return game_state
 
     def generate_decisions(self):
-        decision_prompt = f"Given the state of {self.company} in {self.date}, what are three critical decisions that a {self.job_title} could consider?"
+        decision_prompt = f"Given the state of {self.company} in {self.date}, what are three operational questions that a {self.job_title} could consider?"
         decisions = gptcalls.call_gpt(decision_prompt)
         return decisions
 
